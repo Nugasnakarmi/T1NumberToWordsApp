@@ -1,0 +1,8 @@
+<form formGroupName="form" (submit)="onSubmit(form.value)">
+  <input type="number" formControlName="number" />
+</form>
+@if(form.get('number')?.invalid && form.get('number')?.touched){
+<div>Please enter a valid number</div>
+} @if(interpretedString$ | async; as resultString ){
+<div>{{ resultString }}</div>
+}
