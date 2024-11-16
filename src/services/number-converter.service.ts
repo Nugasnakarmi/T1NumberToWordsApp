@@ -1,22 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { catchError, EMPTY, map, Observable } from 'rxjs';
+import { catchError, EMPTY, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NumberConverterService {
-  url: string = '';
-  constructor() {
-    this.url = environment.apiUrl;
-  }
+  apiUrl: string = `${environment.apiUrl}/app/`;
   httpClient = inject(HttpClient);
 
-  interpretNumberToWords$(number: number): Observable<string> {
-    return this.httpClient.get<string>(this.url + number).pipe(
-      map((response: any) => response),
-      catchError((error: any) => EMPTY)
-    );
+  public interpretNumberToWords$(
+    number: number
+  ): Observable<any | HttpErrorResponse> {
+    return this.httpClient.get<any>(this.apiUrl + 'interpret', {
+      params: { inputNumber: number },
+    });
   }
 }

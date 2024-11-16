@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import {
+  FormGroup,
   ReactiveFormsModule,
   UntypedFormControl,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import { NumberConverterService } from '../../services/number-converter.service';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -18,16 +19,21 @@ import { AsyncPipe } from '@angular/common';
 })
 export class NumberConverterComponent {
   numberConverterService = inject(NumberConverterService);
-  form: UntypedFormGroup = new UntypedFormGroup({});
-  interpretedString$: Observable<string> = new Observable<string>();
+  formGroup: UntypedFormGroup = new UntypedFormGroup({});
+
+  interpretedString$: Observable<any> = new Observable<any>();
 
   ngOnInit(): void {
-    this.form = new UntypedFormGroup({
-      number: new UntypedFormControl('', Validators.required),
+    this.formGroup = new UntypedFormGroup({
+      number: new UntypedFormControl(null, [
+        Validators.required,
+        Validators.min(0),
+      ]),
     });
   }
-  onSubmit(formData: any): void {
-    this.interpretedString$ =
-      this.numberConverterService.interpretNumberToWords$(formData.number);
+  onChange(): void {
+    this.interpretedString$ = this.numberConverterService
+      .interpretNumberToWords$(this.formGroup.value.number)
+      .pipe(tap((res) => console.log));
   }
 }
