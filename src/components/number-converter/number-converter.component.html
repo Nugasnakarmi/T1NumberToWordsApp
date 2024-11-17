@@ -1,18 +1,25 @@
-<form [formGroup]="formGroup" class="number-form">
-  <label for="number">
-    Please enter a number that you want to convert to words
-  </label>
+<div class="form-container">
+  <form [formGroup]="formGroup" class="number-form">
+    <label for="number">
+      Please enter a number that you want to convert to words (0 to 9999999.99)
+    </label>
 
-  <input
-    class="number-input"
-    type="number"
-    formControlName="number"
-    placeholder="Eg: 1234.56"
-    (keyup)="onChange()"
-  />
-</form>
-@if( formGroup.get('number')?.invalid && formGroup.get('number')?.touched){
-<div class="error-text">Please enter a valid number</div>
-} @if( interpretedString$| async; as result){
-<div class="result">{{ result.interpretedString }}</div>
-}
+    <input
+      class="number-input"
+      type="number"
+      formControlName="number"
+      placeholder="Eg: 1234.56"
+      pattern="^\d+(\.\d{1,2})?$"
+      (keyup)="onChange()"
+      (input)="onChange()"
+    />
+  </form>
+  @if( formGroup.get('number')?.invalid && formGroup.get('number')?.touched){
+  <div class="error-text">Please enter a valid number</div>
+  }
+</div>
+<div class="result-container">
+  @if( interpretedString$| async; as result){
+  <div class="result">{{ result.interpretedString }}</div>
+  }
+</div>

@@ -28,6 +28,7 @@ export class NumberConverterComponent {
       number: new UntypedFormControl(null, [
         Validators.required,
         Validators.min(0),
+        Validators.max(9999999.99),
       ]),
     });
   }
