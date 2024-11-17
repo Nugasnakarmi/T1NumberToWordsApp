@@ -1,8 +1,18 @@
-<form [formGroup]="formGroup">
-  <input type="number" formControlName="number" (keyup)="onChange()" />
+<form [formGroup]="formGroup" class="number-form">
+  <label for="number">
+    Please enter a number that you want to convert to words
+  </label>
+
+  <input
+    class="number-input"
+    type="number"
+    formControlName="number"
+    placeholder="Eg: 1234.56"
+    (keyup)="onChange()"
+  />
 </form>
 @if( formGroup.get('number')?.invalid && formGroup.get('number')?.touched){
-<div>Please enter a valid number</div>
+<div class="error-text">Please enter a valid number</div>
 } @if( interpretedString$| async; as result){
-<div>{{ result.interpretedString }}</div>
+<div class="result">{{ result.interpretedString }}</div>
 }
