@@ -2,7 +2,7 @@
   <form [formGroup]="formGroup" class="number-form">
     <label for="number">
       Please enter a number that you want to convert to
-      {{ ConversionMode[modeSelected] }} (0 to 9999999999999999.99)
+      {{ ConversionMode[modeSelected] }} [0 to 9999999999999999.99]
     </label>
 
     <input
@@ -14,7 +14,6 @@
       (keyup)="onChange()"
       (input)="onChange()"
     />
-    <!-- <input type="radio" formControlName="mode" value="0" (click)="onChange()" /> -->
     <mat-radio-group
       aria-label="Select mode"
       formControlName="mode"
