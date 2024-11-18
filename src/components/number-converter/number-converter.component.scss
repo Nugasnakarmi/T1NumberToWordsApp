@@ -31,13 +31,27 @@
 
 .form-container {
   position: absolute;
-  top: 42.5%;
-  left: 32.5%;
+  top: 37.5%;
+  left: 33.5%;
 }
 
 .result-container {
   display: flex;
   height: 100%;
   align-items: center;
+  justify-content: center;
+}
+
+.result {
+  font-size: x-large;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  max-width: 90%;
+}
+
+.mode-radio-buttons {
+  display: flex;
+  gap: 10px;
   justify-content: center;
 }

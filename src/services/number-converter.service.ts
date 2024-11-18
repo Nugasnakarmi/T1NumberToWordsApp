@@ -11,10 +11,11 @@ export class NumberConverterService {
   httpClient = inject(HttpClient);
 
   public interpretNumberToWords$(
-    number: number
+    number: number,
+    mode: number
   ): Observable<any | HttpErrorResponse> {
     return this.httpClient.get<any>(this.apiUrl + 'interpret', {
-      params: { inputNumber: number },
+      params: { inputNumber: number, mode: mode },
     });
   }
 }
