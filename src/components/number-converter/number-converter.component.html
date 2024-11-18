@@ -10,7 +10,7 @@
       type="text"
       formControlName="number"
       placeholder="Eg: 1234.56"
-      pattern="^\d*+(\.\d{1,2})?$"
+      pattern="^\d+(\.\d{1,2})?$"
       (keyup)="onChange()"
       (input)="onChange()"
     />
@@ -22,7 +22,7 @@
       [(ngModel)]="modeSelected"
       (change)="onChange()"
     >
-      <mat-radio-button value="0" default>Currency</mat-radio-button>
+      <mat-radio-button value="0" [checked]="true">Currency</mat-radio-button>
       <mat-radio-button value="1">Words</mat-radio-button>
     </mat-radio-group>
   </form>
