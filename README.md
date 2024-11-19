@@ -1,5 +1,6 @@
 # T1NumberToWordsApp
 
+Web app to convert number to words.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
 
 ## Prerequisites
